@@ -1,0 +1,1 @@
+This repository contains some projects about statistical learning.
