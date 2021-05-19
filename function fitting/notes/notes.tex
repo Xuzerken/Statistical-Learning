@@ -1,0 +1,107 @@
+\documentclass[12pt]{article}
+\usepackage[UTF8, scheme = plain]{ctex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{appendix}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[many]{tcolorbox} %fill in tcolorbox 
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{cmbright}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{parskip}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstdefinestyle{myPython}{
+	frame=l,
+	language=Python,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	numbers=left,
+	columns=flexible,
+	numberstyle=\small\color{black},
+	basicstyle={\small\ttfamily},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+\lstdefinestyle{myMatlab}{
+	frame=l,
+	language=Matlab,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	numbers=left,
+	columns=flexible,
+	numberstyle=\small\color{black},
+	basicstyle={\small\ttfamily},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}{Example}
+\newtheorem{exercise}{Exercise}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newcommand{\Rule}{\rule{\linewidth}{0.5pt}}
+\newcommand\real{\mathbb{R}}
+
+\usepackage[
+backend=bibtex,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+%\usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
+\addbibresource{ref.bib}
+
+\title{Notes}
+\author{Tao Xu}
+\date{\today}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	
+
+	\Rule
+
+	\newpage
+
+
+
+
+	
+	\printbibliography
+	
+	\newpage
+
+%	\begin{appendices}
+%	\end{appendices}
+\end{document}
+
