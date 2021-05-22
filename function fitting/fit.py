@@ -3,9 +3,7 @@ from tensorflow import keras
 assert tf.__version__ >= "2.0"
 import numpy as np
 import os
-import time
 import pandas as pd
-import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 PROJECT_ROOT_DIR = "."
@@ -26,6 +24,7 @@ R_variable['plotepoch']=50
 def get_y_func(xs):
     return np.cos(xs)
 
+np.random.seed(1)
 R_variable['test_inputs']=np.random.rand(R_variable['test_size'],R_variable['input_dim'])*(R_variable['x_end']
 -R_variable['x_start'])+R_variable['x_start']
 R_variable['train_inputs']=np.random.rand(R_variable['train_size'],R_variable['input_dim'])*(R_variable['x_end']-R_variable['x_start'])+R_variable['x_start']
@@ -40,21 +39,42 @@ class PlotCallback(keras.callbacks.Callback):
         if epoch%(R_variable['plotepoch'])==0:
             self.ploty(epoch)
     
-    def save_fig(self,fig_id, tight_layout=True, fig_extension="png", resolution=300):
+    def save_fig(self,fig_id,fig_extension="png"):
         path = os.path.join(IMAGES_PATH, fig_id + "." + fig_extension)
-        plt.savefig(path, format=fig_extension, dpi=resolution)
+        plt.savefig(path, format=fig_extension)
 
     def ploty(self,pic_id):
         y_predict = self.model.predict(X_valid)
+
+        if R_variable['input_dim']==2:
+            # Make data.
+            X = np.arange(R_variable['x_start'], R_variable['x_end'], 0.1)
+            Y = np.arange(R_variable['x_start'], R_variable['x_end'], 0.1)
+            X, Y = np.meshgrid(X, Y)
+            xy=np.concatenate((np.reshape(X,[-1,1]),np.reshape(Y,[-1,1])),axis=1)
+            Z = np.reshape(get_y_func(xy),[len(X),-1])
+            fp = plt.figure()
+            ax = fp.gca(projection='3d')
+            # Plot the surface.
+            surf = ax.plot_surface(X, Y, Z-np.min(Z), cmap=cm.coolwarm,linewidth=0, antialiased=False)
+            # Customize the z axis.
+            #ax.set_zlim(-2.01, 2.01)
+            ax.zaxis.set_major_locator(LinearLocator(5))
+            ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
+            # Add a color bar which maps values to colors.
+            fp.colorbar(surf, shrink=0.5, aspect=5)
+            ax.scatter(X_valid[:,0], X_valid[:,1], y_predict-np.min(y_predict))
+            self.save_fig("predict_plot_"+"%s"%(pic_id))
         if R_variable['input_dim']==1:
-            plt.figure(pic_id)
+            plt.figure()
             plt.grid()
-            plt.scatter(X_valid.reshape(R_variable['test_size']),y_predict.reshape(R_variable['test_size']),c='r',s=10,label='Test')
-            plt.scatter(X_train.reshape(R_variable['train_size']),y_train.reshape(R_variable['train_size']),c='g',s=10,label='Train')
-            plt.scatter(X_valid.reshape(R_variable['test_size']),y_valid.reshape(R_variable['test_size']), c='b',s=10,label='True')
+            plt.scatter(X_valid,y_predict,c='r',s=10,label='Test')
+            plt.scatter(X_valid,y_valid, c='b',s=10,label='True')
+            plt.legend(loc='best')
             self.save_fig("predict_plot_"+"%s"%(pic_id))
  
 plot_cb = PlotCallback()
+
 
 model = keras.models.Sequential([
     keras.layers.Dense(200, activation="tanh", input_shape=X_train.shape[1:]),
@@ -69,4 +89,4 @@ history = model.fit(X_train, y_train, epochs=R_variable['epoch_num'], validation
 pd.DataFrame(history.history).plot(figsize=(8, 5))
 plt.grid(True)
 plt.gca().set_ylim(0, 0.6) # set the vertical range to [0-1]
-plt.save_fig("loss")
+plt.savefig("./images/test.png")
