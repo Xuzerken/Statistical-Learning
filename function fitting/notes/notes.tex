@@ -13,8 +13,8 @@
 \usepackage{xcolor}
 \usepackage[many]{tcolorbox} %fill in tcolorbox 
 \usepackage[margin=1in]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage{cmbright}
+% \usepackage[T1]{fontenc}
+% \usepackage{cmbright}
 \usepackage{booktabs}
 \usepackage{url}
 \usepackage{parskip}
@@ -80,7 +80,7 @@ sorting=ynt
 %\usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
 \addbibresource{ref.bib}
 
-\title{Experiment of Using Neuron Networks }
+\title{Experiments on Using Neural Networks to Fit Function}
 \author{Tao Xu}
 \date{\today}
 
@@ -88,12 +88,152 @@ sorting=ynt
 	\maketitle
 	\tableofcontents
 	
-
-	\Rule
+	% \begin{abstract}
+	% 	This is a report about a seires of experiments on using neural networks to fit function. 
+	% \end{abstract}
 
 	\newpage
 
+	To simplify networks' structure, I choose to use two-layer fully-connected feedforeward neural networks to fit a 
+	cosine function $cos(x)\; x\in(-\frac{\pi}{2},\frac{\pi}{2})$. 
+	What I am interested is the width of network, choose of loss function and different initialization of weighted
+	parameters, so I set different levels and doing experiments each for four repeatition. I experiment on $10,50,100$
+	three different widths; MSE ($\sum\limits_{i=1}^{n}(f_\theta(x_i)-y_i)^2$) and MAE ($\sum\limits_{i=1}^{n}\left|f_\theta(x_i)-y_i\right|$);
+	three different standard variations $0.01,0.1,1$.
+	
+	As for other settings, I keep them all invariant: use adam optimizer with learning rate $0.001$, 0 mean normal 
+	distribution for initialization, relu $\operatorname{max}(0,x)$ as activation function, training $3000$ epoches,
+	$1000$ training size, $1000$ testing size and full batch size.
 
+	In each case, I will show the learning curve and the fitting process every 500 epoches.
+
+	\section{Width = 10}
+		\subsection{Mean Square Error}
+			\subsubsection{Standard Error = 0.01}
+			\paragraph{1}
+			\begin{figure}[H]
+				\centering  
+				\subfigure[epoch=0]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=500]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=1000]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=1500]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=2000]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=2500]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\caption{Curve Fitting Process}
+				\label{}
+			\end{figure}
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=0.8\linewidth]{}
+				\caption{Loss vs. epoch}
+			\end{figure}
+
+			\paragraph{2}
+			\begin{figure}[H]
+				\centering  
+				\subfigure[epoch=0]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=500]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=1000]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=1500]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=2000]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=2500]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\caption{Curve Fitting Process}
+				\label{}
+			\end{figure}
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=0.8\linewidth]{}
+				\caption{Loss vs. epoch}
+			\end{figure}
+
+			\paragraph{3}
+			\begin{figure}[H]
+				\centering  
+				\subfigure[epoch=0]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=500]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=1000]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=1500]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=2000]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=2500]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\caption{Curve Fitting Process}
+				\label{}
+			\end{figure}
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=0.8\linewidth]{}
+				\caption{Loss vs. epoch}
+			\end{figure}
+
+			\paragraph{4}
+			\begin{figure}[H]
+				\centering  
+				\subfigure[epoch=0]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=500]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=1000]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=1500]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=2000]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\subfigure[epoch=2500]{
+					\includegraphics[width=0.32\textwidth]{}}
+				\caption{Curve Fitting Process}
+				\label{}
+			\end{figure}
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=0.8\linewidth]{}
+				\caption{Loss vs. epoch}
+			\end{figure}
+
+			
+			\subsubsection{Standard Error = 0.1}
+			\subsubsection{Standard Error = 1}
+		\subsection{Mean Absolute Error}
+			\subsubsection{Standard Error = 0.01}
+			\subsubsection{Standard Error = 0.1}
+			\subsubsection{Standard Error = 1}
+
+	\section{Width = 50}
+		\subsection{Mean Square Error}
+			\subsubsection{Standard Error = 0.01}
+			\subsubsection{Standard Error = 0.1}
+			\subsubsection{Standard Error = 1}
+		\subsection{Mean Absolute Error}
+			\subsubsection{Standard Error = 0.01}
+			\subsubsection{Standard Error = 0.1}
+			\subsubsection{Standard Error = 1}
+	
+	\section{Width = 100}
+		\subsection{Mean Square Error}
+			\subsubsection{Standard Error = 0.01}
+			\subsubsection{Standard Error = 0.1}
+			\subsubsection{Standard Error = 1}
+		\subsection{Mean Absolute Error}
+			\subsubsection{Standard Error = 0.01}
+			\subsubsection{Standard Error = 0.1}
+			\subsubsection{Standard Error = 1}
+	
 
 
 	
