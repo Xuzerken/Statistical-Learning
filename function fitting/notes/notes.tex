@@ -5,7 +5,7 @@
 \usepackage{amsthm}
 \usepackage{mathrsfs}
 \usepackage{graphicx}
-\usepackage{subcaption}
+% \usepackage{subcaption}
 \usepackage{setspace}
 \usepackage{hyperref}
 \usepackage{appendix}
@@ -18,6 +18,7 @@
 \usepackage{booktabs}
 \usepackage{url}
 \usepackage{parskip}
+\usepackage{subfigure}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -78,7 +79,7 @@ style=alphabetic,
 sorting=ynt
 ]{biblatex}
 %\usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
-\addbibresource{ref.bib}
+% \addbibresource{ref.bib}
 
 \title{Experiments on Using Neural Networks to Fit Function}
 \author{Tao Xu}
@@ -88,156 +89,1516 @@ sorting=ynt
 	\maketitle
 	\tableofcontents
 	
-	% \begin{abstract}
-	% 	This is a report about a seires of experiments on using neural networks to fit function. 
-	% \end{abstract}
+	\begin{abstract}
+		This is a report about a seires of experiments on using neural networks to fit function. 
+		To simplify networks' structure, I choose to use two-layer fully-connected feedforeward neural networks to fit a 
+		cosine function $cos(x)\; x\in(-\frac{\pi}{2},\frac{\pi}{2})$. 
+		What I am interested is the width of network, choose of loss function and different initialization of weighted
+		parameters, so I set different levels and doing experiments each for four repeatition. I experiment on $10,50,100$
+		three different widths; MSE ($\sum\limits_{i=1}^{n}(f_\theta(x_i)-y_i)^2$) and MAE ($\sum\limits_{i=1}^{n}\left|f_\theta(x_i)-y_i\right|$);
+		three different standard variations $0.01,0.1,1$.
+		
+		As for other settings, I keep them all invariant: use adam optimizer with learning rate $0.001$, 0 mean normal 
+		distribution for initialization, relu $\operatorname{max}(0,x)$ as activation function, training $3000$ epoches,
+		$1000$ training size, $1000$ testing size and full batch size.
+
+		In each case, I will show the learning curve and the fitting process every 500 epoches.
+	\end{abstract}
 
 	\newpage
 
-	To simplify networks' structure, I choose to use two-layer fully-connected feedforeward neural networks to fit a 
-	cosine function $cos(x)\; x\in(-\frac{\pi}{2},\frac{\pi}{2})$. 
-	What I am interested is the width of network, choose of loss function and different initialization of weighted
-	parameters, so I set different levels and doing experiments each for four repeatition. I experiment on $10,50,100$
-	three different widths; MSE ($\sum\limits_{i=1}^{n}(f_\theta(x_i)-y_i)^2$) and MAE ($\sum\limits_{i=1}^{n}\left|f_\theta(x_i)-y_i\right|$);
-	three different standard variations $0.01,0.1,1$.
 	
-	As for other settings, I keep them all invariant: use adam optimizer with learning rate $0.001$, 0 mean normal 
-	distribution for initialization, relu $\operatorname{max}(0,x)$ as activation function, training $3000$ epoches,
-	$1000$ training size, $1000$ testing size and full batch size.
-
-	In each case, I will show the learning curve and the fitting process every 500 epoches.
 
 	\section{Width = 10}
 		\subsection{Mean Square Error}
 			\subsubsection{Standard Error = 0.01}
-			\paragraph{1}
-			\begin{figure}[H]
+		
+			\begin{figure}[h]
 				\centering  
 				\subfigure[epoch=0]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=1/predict_plot_0.png}}
 				\subfigure[epoch=500]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=1/predict_plot_500.png}}
 				\subfigure[epoch=1000]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=1/predict_plot_1000.png}}
 				\subfigure[epoch=1500]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=1/predict_plot_1500.png}}
 				\subfigure[epoch=2000]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=1/predict_plot_2000.png}}
 				\subfigure[epoch=2500]{
-					\includegraphics[width=0.32\textwidth]{}}
-				\caption{Curve Fitting Process}
-				\label{}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=1/predict_plot_2500.png}}
+				\subfigure[Loss vs. epoch]{
+					\includegraphics[width=0.6\linewidth]{../width=10loss=mean_squared_errorini=0.01rep=1/learning_curve.png}}
+				\caption{Curve Fitting Process(experiment 1)}
 			\end{figure}
-			\begin{figure}[h]
-				\centering
-				\includegraphics[width=0.8\linewidth]{}
-				\caption{Loss vs. epoch}
-			\end{figure}
+			\newpage
 
-			\paragraph{2}
-			\begin{figure}[H]
+			\begin{figure}[h]
 				\centering  
 				\subfigure[epoch=0]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=2/predict_plot_0.png}}
 				\subfigure[epoch=500]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=2/predict_plot_500.png}}
 				\subfigure[epoch=1000]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=2/predict_plot_1000.png}}
 				\subfigure[epoch=1500]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=2/predict_plot_1500.png}}
 				\subfigure[epoch=2000]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=2/predict_plot_2000.png}}
 				\subfigure[epoch=2500]{
-					\includegraphics[width=0.32\textwidth]{}}
-				\caption{Curve Fitting Process}
-				\label{}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=2/predict_plot_2500.png}}
+				\subfigure[Loss vs. epoch]{
+					\includegraphics[width=0.6\linewidth]{../width=10loss=mean_squared_errorini=0.01rep=2/learning_curve.png}}
+				\caption{Curve Fitting Process(experiment 2)}
 			\end{figure}
-			\begin{figure}[h]
-				\centering
-				\includegraphics[width=0.8\linewidth]{}
-				\caption{Loss vs. epoch}
-			\end{figure}
+			\newpage
 
-			\paragraph{3}
-			\begin{figure}[H]
+			\begin{figure}[h]
 				\centering  
 				\subfigure[epoch=0]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=3/predict_plot_0.png}}
 				\subfigure[epoch=500]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=3/predict_plot_500.png}}
 				\subfigure[epoch=1000]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=3/predict_plot_1000.png}}
 				\subfigure[epoch=1500]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=3/predict_plot_1500.png}}
 				\subfigure[epoch=2000]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=3/predict_plot_2000.png}}
 				\subfigure[epoch=2500]{
-					\includegraphics[width=0.32\textwidth]{}}
-				\caption{Curve Fitting Process}
-				\label{}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=3/predict_plot_2500.png}}
+				\subfigure[Loss vs. epoch]{
+					\includegraphics[width=0.6\linewidth]{../width=10loss=mean_squared_errorini=0.01rep=3/learning_curve.png}}
+				\caption{Curve Fitting Process(experiment 3)}
 			\end{figure}
-			\begin{figure}[h]
-				\centering
-				\includegraphics[width=0.8\linewidth]{}
-				\caption{Loss vs. epoch}
-			\end{figure}
+			\newpage
 
-			\paragraph{4}
-			\begin{figure}[H]
+			\begin{figure}[h]
 				\centering  
 				\subfigure[epoch=0]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=4/predict_plot_0.png}}
 				\subfigure[epoch=500]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=4/predict_plot_500.png}}
 				\subfigure[epoch=1000]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=4/predict_plot_1000.png}}
 				\subfigure[epoch=1500]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=4/predict_plot_1500.png}}
 				\subfigure[epoch=2000]{
-					\includegraphics[width=0.32\textwidth]{}}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=4/predict_plot_2000.png}}
 				\subfigure[epoch=2500]{
-					\includegraphics[width=0.32\textwidth]{}}
-				\caption{Curve Fitting Process}
-				\label{}
+					\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.01rep=4/predict_plot_2500.png}}
+				\subfigure[Loss vs. epoch]{
+					\includegraphics[width=0.6\linewidth]{../width=10loss=mean_squared_errorini=0.01rep=4/learning_curve.png}}
+				\caption{Curve Fitting Process(experiment 4)}
 			\end{figure}
-			\begin{figure}[h]
-				\centering
-				\includegraphics[width=0.8\linewidth]{}
-				\caption{Loss vs. epoch}
-			\end{figure}
+			\newpage
 
+			\subsubsection{Standard Error = 0.1}
+				\begin{figure}[h]
+					\centering  
+					\subfigure[epoch=0]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=1/predict_plot_0.png}}
+					\subfigure[epoch=500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=1/predict_plot_500.png}}
+					\subfigure[epoch=1000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=1/predict_plot_1000.png}}
+					\subfigure[epoch=1500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=1/predict_plot_1500.png}}
+					\subfigure[epoch=2000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=1/predict_plot_2000.png}}
+					\subfigure[epoch=2500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=1/predict_plot_2500.png}}
+					\subfigure[Loss vs. epoch]{
+						\includegraphics[width=0.6\linewidth]{../width=10loss=mean_squared_errorini=0.1rep=1/learning_curve.png}}
+					\caption{Curve Fitting Process(experiment 1)}
+				\end{figure}
+				\newpage
+
+				\begin{figure}[h]
+					\centering  
+					\subfigure[epoch=0]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=2/predict_plot_0.png}}
+					\subfigure[epoch=500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=2/predict_plot_500.png}}
+					\subfigure[epoch=1000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=2/predict_plot_1000.png}}
+					\subfigure[epoch=1500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=2/predict_plot_1500.png}}
+					\subfigure[epoch=2000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=2/predict_plot_2000.png}}
+					\subfigure[epoch=2500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=2/predict_plot_2500.png}}
+					\subfigure[Loss vs. epoch]{
+						\includegraphics[width=0.6\linewidth]{../width=10loss=mean_squared_errorini=0.1rep=2/learning_curve.png}}
+					\caption{Curve Fitting Process(experiment 2)}
+				\end{figure}
+				\newpage
+
+				\begin{figure}[h]
+					\centering  
+					\subfigure[epoch=0]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=3/predict_plot_0.png}}
+					\subfigure[epoch=500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=3/predict_plot_500.png}}
+					\subfigure[epoch=1000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=3/predict_plot_1000.png}}
+					\subfigure[epoch=1500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=3/predict_plot_1500.png}}
+					\subfigure[epoch=2000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=3/predict_plot_2000.png}}
+					\subfigure[epoch=2500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=3/predict_plot_2500.png}}
+					\subfigure[Loss vs. epoch]{
+						\includegraphics[width=0.6\linewidth]{../width=10loss=mean_squared_errorini=0.1rep=3/learning_curve.png}}
+					\caption{Curve Fitting Process(experiment 3)}
+				\end{figure}
+				\newpage
+
+				\begin{figure}[h]
+					\centering  
+					\subfigure[epoch=0]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=4/predict_plot_0.png}}
+					\subfigure[epoch=500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=4/predict_plot_500.png}}
+					\subfigure[epoch=1000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=4/predict_plot_1000.png}}
+					\subfigure[epoch=1500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=4/predict_plot_1500.png}}
+					\subfigure[epoch=2000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=4/predict_plot_2000.png}}
+					\subfigure[epoch=2500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=0.1rep=4/predict_plot_2500.png}}
+					\subfigure[Loss vs. epoch]{
+						\includegraphics[width=0.6\linewidth]{../width=10loss=mean_squared_errorini=0.1rep=4/learning_curve.png}}
+					\caption{Curve Fitting Process(experiment 4)}
+				\end{figure}
+				\newpage
+
+
+			\subsubsection{Standard Error = 1}
+				\begin{figure}[h]
+					\centering  
+					\subfigure[epoch=0]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=1/predict_plot_0.png}}
+					\subfigure[epoch=500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=1/predict_plot_500.png}}
+					\subfigure[epoch=1000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=1/predict_plot_1000.png}}
+					\subfigure[epoch=1500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=1/predict_plot_1500.png}}
+					\subfigure[epoch=2000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=1/predict_plot_2000.png}}
+					\subfigure[epoch=2500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=1/predict_plot_2500.png}}
+					\subfigure[Loss vs. epoch]{
+						\includegraphics[width=0.6\linewidth]{../width=10loss=mean_squared_errorini=1rep=1/learning_curve.png}}
+					\caption{Curve Fitting Process(experiment 1)}
+				\end{figure}
+				\newpage
+
+				\begin{figure}[h]
+					\centering  
+					\subfigure[epoch=0]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=2/predict_plot_0.png}}
+					\subfigure[epoch=500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=2/predict_plot_500.png}}
+					\subfigure[epoch=1000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=2/predict_plot_1000.png}}
+					\subfigure[epoch=1500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=2/predict_plot_1500.png}}
+					\subfigure[epoch=2000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=2/predict_plot_2000.png}}
+					\subfigure[epoch=2500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=2/predict_plot_2500.png}}
+					\subfigure[Loss vs. epoch]{
+						\includegraphics[width=0.6\linewidth]{../width=10loss=mean_squared_errorini=1rep=2/learning_curve.png}}
+					\caption{Curve Fitting Process(experiment 2)}
+				\end{figure}
+				\newpage
+
+				\begin{figure}[h]
+					\centering  
+					\subfigure[epoch=0]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=3/predict_plot_0.png}}
+					\subfigure[epoch=500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=3/predict_plot_500.png}}
+					\subfigure[epoch=1000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=3/predict_plot_1000.png}}
+					\subfigure[epoch=1500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=3/predict_plot_1500.png}}
+					\subfigure[epoch=2000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=3/predict_plot_2000.png}}
+					\subfigure[epoch=2500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=3/predict_plot_2500.png}}
+					\subfigure[Loss vs. epoch]{
+						\includegraphics[width=0.6\linewidth]{../width=10loss=mean_squared_errorini=1rep=3/learning_curve.png}}
+					\caption{Curve Fitting Process(experiment 3)}
+				\end{figure}
+				\newpage
+
+				\begin{figure}[h]
+					\centering  
+					\subfigure[epoch=0]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=4/predict_plot_0.png}}
+					\subfigure[epoch=500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=4/predict_plot_500.png}}
+					\subfigure[epoch=1000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=4/predict_plot_1000.png}}
+					\subfigure[epoch=1500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=4/predict_plot_1500.png}}
+					\subfigure[epoch=2000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=4/predict_plot_2000.png}}
+					\subfigure[epoch=2500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_squared_errorini=1rep=4/predict_plot_2500.png}}
+					\subfigure[Loss vs. epoch]{
+						\includegraphics[width=0.6\linewidth]{../width=10loss=mean_squared_errorini=1rep=4/learning_curve.png}}
+					\caption{Curve Fitting Process(experiment 4)}
+				\end{figure}
+				\newpage
+
+
+
+			\subsection{Mean Absolute Error}
+				\subsubsection{Standard Error = 0.01}
 			
-			\subsubsection{Standard Error = 0.1}
-			\subsubsection{Standard Error = 1}
-		\subsection{Mean Absolute Error}
-			\subsubsection{Standard Error = 0.01}
-			\subsubsection{Standard Error = 0.1}
-			\subsubsection{Standard Error = 1}
-
-	\section{Width = 50}
-		\subsection{Mean Square Error}
-			\subsubsection{Standard Error = 0.01}
-			\subsubsection{Standard Error = 0.1}
-			\subsubsection{Standard Error = 1}
-		\subsection{Mean Absolute Error}
-			\subsubsection{Standard Error = 0.01}
-			\subsubsection{Standard Error = 0.1}
-			\subsubsection{Standard Error = 1}
+				\begin{figure}[h]
+					\centering  
+					\subfigure[epoch=0]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=1/predict_plot_0.png}}
+					\subfigure[epoch=500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=1/predict_plot_500.png}}
+					\subfigure[epoch=1000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=1/predict_plot_1000.png}}
+					\subfigure[epoch=1500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=1/predict_plot_1500.png}}
+					\subfigure[epoch=2000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=1/predict_plot_2000.png}}
+					\subfigure[epoch=2500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=1/predict_plot_2500.png}}
+					\subfigure[Loss vs. epoch]{
+						\includegraphics[width=0.6\linewidth]{../width=10loss=mean_absolute_errorini=0.01rep=1/learning_curve.png}}
+					\caption{Curve Fitting Process(experiment 1)}
+				\end{figure}
+				\newpage
 	
-	\section{Width = 100}
-		\subsection{Mean Square Error}
-			\subsubsection{Standard Error = 0.01}
-			\subsubsection{Standard Error = 0.1}
-			\subsubsection{Standard Error = 1}
-		\subsection{Mean Absolute Error}
-			\subsubsection{Standard Error = 0.01}
-			\subsubsection{Standard Error = 0.1}
-			\subsubsection{Standard Error = 1}
+				\begin{figure}[h]
+					\centering  
+					\subfigure[epoch=0]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=2/predict_plot_0.png}}
+					\subfigure[epoch=500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=2/predict_plot_500.png}}
+					\subfigure[epoch=1000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=2/predict_plot_1000.png}}
+					\subfigure[epoch=1500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=2/predict_plot_1500.png}}
+					\subfigure[epoch=2000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=2/predict_plot_2000.png}}
+					\subfigure[epoch=2500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=2/predict_plot_2500.png}}
+					\subfigure[Loss vs. epoch]{
+						\includegraphics[width=0.6\linewidth]{../width=10loss=mean_absolute_errorini=0.01rep=2/learning_curve.png}}
+					\caption{Curve Fitting Process(experiment 2)}
+				\end{figure}
+				\newpage
 	
+				\begin{figure}[h]
+					\centering  
+					\subfigure[epoch=0]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=3/predict_plot_0.png}}
+					\subfigure[epoch=500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=3/predict_plot_500.png}}
+					\subfigure[epoch=1000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=3/predict_plot_1000.png}}
+					\subfigure[epoch=1500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=3/predict_plot_1500.png}}
+					\subfigure[epoch=2000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=3/predict_plot_2000.png}}
+					\subfigure[epoch=2500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=3/predict_plot_2500.png}}
+					\subfigure[Loss vs. epoch]{
+						\includegraphics[width=0.6\linewidth]{../width=10loss=mean_absolute_errorini=0.01rep=3/learning_curve.png}}
+					\caption{Curve Fitting Process(experiment 3)}
+				\end{figure}
+				\newpage
+	
+				\begin{figure}[h]
+					\centering  
+					\subfigure[epoch=0]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=4/predict_plot_0.png}}
+					\subfigure[epoch=500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=4/predict_plot_500.png}}
+					\subfigure[epoch=1000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=4/predict_plot_1000.png}}
+					\subfigure[epoch=1500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=4/predict_plot_1500.png}}
+					\subfigure[epoch=2000]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=4/predict_plot_2000.png}}
+					\subfigure[epoch=2500]{
+						\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.01rep=4/predict_plot_2500.png}}
+					\subfigure[Loss vs. epoch]{
+						\includegraphics[width=0.6\linewidth]{../width=10loss=mean_absolute_errorini=0.01rep=4/learning_curve.png}}
+					\caption{Curve Fitting Process(experiment 4)}
+				\end{figure}
+				\newpage
+	
+				\subsubsection{Standard Error = 0.1}
+					\begin{figure}[h]
+						\centering  
+						\subfigure[epoch=0]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=1/predict_plot_0.png}}
+						\subfigure[epoch=500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=1/predict_plot_500.png}}
+						\subfigure[epoch=1000]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=1/predict_plot_1000.png}}
+						\subfigure[epoch=1500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=1/predict_plot_1500.png}}
+						\subfigure[epoch=2000]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=1/predict_plot_2000.png}}
+						\subfigure[epoch=2500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=1/predict_plot_2500.png}}
+						\subfigure[Loss vs. epoch]{
+							\includegraphics[width=0.6\linewidth]{../width=10loss=mean_absolute_errorini=0.1rep=1/learning_curve.png}}
+						\caption{Curve Fitting Process(experiment 1)}
+					\end{figure}
+					\newpage
+	
+					\begin{figure}[h]
+						\centering  
+						\subfigure[epoch=0]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=2/predict_plot_0.png}}
+						\subfigure[epoch=500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=2/predict_plot_500.png}}
+						\subfigure[epoch=1000]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=2/predict_plot_1000.png}}
+						\subfigure[epoch=1500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=2/predict_plot_1500.png}}
+						\subfigure[epoch=2000]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=2/predict_plot_2000.png}}
+						\subfigure[epoch=2500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=2/predict_plot_2500.png}}
+						\subfigure[Loss vs. epoch]{
+							\includegraphics[width=0.6\linewidth]{../width=10loss=mean_absolute_errorini=0.1rep=2/learning_curve.png}}
+						\caption{Curve Fitting Process(experiment 2)}
+					\end{figure}
+					\newpage
+	
+					\begin{figure}[h]
+						\centering  
+						\subfigure[epoch=0]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=3/predict_plot_0.png}}
+						\subfigure[epoch=500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=3/predict_plot_500.png}}
+						\subfigure[epoch=1000]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=3/predict_plot_1000.png}}
+						\subfigure[epoch=1500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=3/predict_plot_1500.png}}
+						\subfigure[epoch=2000]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=3/predict_plot_2000.png}}
+						\subfigure[epoch=2500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=3/predict_plot_2500.png}}
+						\subfigure[Loss vs. epoch]{
+							\includegraphics[width=0.6\linewidth]{../width=10loss=mean_absolute_errorini=0.1rep=3/learning_curve.png}}
+						\caption{Curve Fitting Process(experiment 3)}
+					\end{figure}
+					\newpage
+	
+					\begin{figure}[h]
+						\centering  
+						\subfigure[epoch=0]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=4/predict_plot_0.png}}
+						\subfigure[epoch=500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=4/predict_plot_500.png}}
+						\subfigure[epoch=1000]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=4/predict_plot_1000.png}}
+						\subfigure[epoch=1500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=4/predict_plot_1500.png}}
+						\subfigure[epoch=2000]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=4/predict_plot_2000.png}}
+						\subfigure[epoch=2500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=0.1rep=4/predict_plot_2500.png}}
+						\subfigure[Loss vs. epoch]{
+							\includegraphics[width=0.6\linewidth]{../width=10loss=mean_absolute_errorini=0.1rep=4/learning_curve.png}}
+						\caption{Curve Fitting Process(experiment 4)}
+					\end{figure}
+					\newpage
+	
+	
+				\subsubsection{Standard Error = 1}
+					\begin{figure}[h]
+						\centering  
+						\subfigure[epoch=0]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=1/predict_plot_0.png}}
+						\subfigure[epoch=500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=1/predict_plot_500.png}}
+						\subfigure[epoch=1000]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=1/predict_plot_1000.png}}
+						\subfigure[epoch=1500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=1/predict_plot_1500.png}}
+						\subfigure[epoch=2000]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=1/predict_plot_2000.png}}
+						\subfigure[epoch=2500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=1/predict_plot_2500.png}}
+						\subfigure[Loss vs. epoch]{
+							\includegraphics[width=0.6\linewidth]{../width=10loss=mean_absolute_errorini=1rep=1/learning_curve.png}}
+						\caption{Curve Fitting Process(experiment 1)}
+					\end{figure}
+					\newpage
+	
+					\begin{figure}[h]
+						\centering  
+						\subfigure[epoch=0]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=2/predict_plot_0.png}}
+						\subfigure[epoch=500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=2/predict_plot_500.png}}
+						\subfigure[epoch=1000]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=2/predict_plot_1000.png}}
+						\subfigure[epoch=1500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=2/predict_plot_1500.png}}
+						\subfigure[epoch=2000]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=2/predict_plot_2000.png}}
+						\subfigure[epoch=2500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=2/predict_plot_2500.png}}
+						\subfigure[Loss vs. epoch]{
+							\includegraphics[width=0.6\linewidth]{../width=10loss=mean_absolute_errorini=1rep=2/learning_curve.png}}
+						\caption{Curve Fitting Process(experiment 2)}
+					\end{figure}
+					\newpage
+	
+					\begin{figure}[h]
+						\centering  
+						\subfigure[epoch=0]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=3/predict_plot_0.png}}
+						\subfigure[epoch=500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=3/predict_plot_500.png}}
+						\subfigure[epoch=1000]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=3/predict_plot_1000.png}}
+						\subfigure[epoch=1500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=3/predict_plot_1500.png}}
+						\subfigure[epoch=2000]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=3/predict_plot_2000.png}}
+						\subfigure[epoch=2500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=3/predict_plot_2500.png}}
+						\subfigure[Loss vs. epoch]{
+							\includegraphics[width=0.6\linewidth]{../width=10loss=mean_absolute_errorini=1rep=3/learning_curve.png}}
+						\caption{Curve Fitting Process(experiment 3)}
+					\end{figure}
+					\newpage
+	
+					\begin{figure}[h]
+						\centering  
+						\subfigure[epoch=0]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=4/predict_plot_0.png}}
+						\subfigure[epoch=500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=4/predict_plot_500.png}}
+						\subfigure[epoch=1000]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=4/predict_plot_1000.png}}
+						\subfigure[epoch=1500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=4/predict_plot_1500.png}}
+						\subfigure[epoch=2000]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=4/predict_plot_2000.png}}
+						\subfigure[epoch=2500]{
+							\includegraphics[width=0.3\textwidth]{../width=10loss=mean_absolute_errorini=1rep=4/predict_plot_2500.png}}
+						\subfigure[Loss vs. epoch]{
+							\includegraphics[width=0.6\linewidth]{../width=10loss=mean_absolute_errorini=1rep=4/learning_curve.png}}
+						\caption{Curve Fitting Process(experiment 4)}
+					\end{figure}
+					\newpage
+	
+
+					\section{Width = 50}
+					\subsection{Mean Square Error}
+						\subsubsection{Standard Error = 0.01}
+					
+						\begin{figure}[h]
+							\centering  
+							\subfigure[epoch=0]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=1/predict_plot_0.png}}
+							\subfigure[epoch=500]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=1/predict_plot_500.png}}
+							\subfigure[epoch=1000]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=1/predict_plot_1000.png}}
+							\subfigure[epoch=1500]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=1/predict_plot_1500.png}}
+							\subfigure[epoch=2000]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=1/predict_plot_2000.png}}
+							\subfigure[epoch=2500]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=1/predict_plot_2500.png}}
+							\subfigure[Loss vs. epoch]{
+								\includegraphics[width=0.6\linewidth]{../width=50loss=mean_squared_errorini=0.01rep=1/learning_curve.png}}
+							\caption{Curve Fitting Process(experiment 1)}
+						\end{figure}
+						\newpage
+			
+						\begin{figure}[h]
+							\centering  
+							\subfigure[epoch=0]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=2/predict_plot_0.png}}
+							\subfigure[epoch=500]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=2/predict_plot_500.png}}
+							\subfigure[epoch=1000]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=2/predict_plot_1000.png}}
+							\subfigure[epoch=1500]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=2/predict_plot_1500.png}}
+							\subfigure[epoch=2000]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=2/predict_plot_2000.png}}
+							\subfigure[epoch=2500]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=2/predict_plot_2500.png}}
+							\subfigure[Loss vs. epoch]{
+								\includegraphics[width=0.6\linewidth]{../width=50loss=mean_squared_errorini=0.01rep=2/learning_curve.png}}
+							\caption{Curve Fitting Process(experiment 2)}
+						\end{figure}
+						\newpage
+			
+						\begin{figure}[h]
+							\centering  
+							\subfigure[epoch=0]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=3/predict_plot_0.png}}
+							\subfigure[epoch=500]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=3/predict_plot_500.png}}
+							\subfigure[epoch=1000]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=3/predict_plot_1000.png}}
+							\subfigure[epoch=1500]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=3/predict_plot_1500.png}}
+							\subfigure[epoch=2000]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=3/predict_plot_2000.png}}
+							\subfigure[epoch=2500]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=3/predict_plot_2500.png}}
+							\subfigure[Loss vs. epoch]{
+								\includegraphics[width=0.6\linewidth]{../width=50loss=mean_squared_errorini=0.01rep=3/learning_curve.png}}
+							\caption{Curve Fitting Process(experiment 3)}
+						\end{figure}
+						\newpage
+			
+						\begin{figure}[h]
+							\centering  
+							\subfigure[epoch=0]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=4/predict_plot_0.png}}
+							\subfigure[epoch=500]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=4/predict_plot_500.png}}
+							\subfigure[epoch=1000]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=4/predict_plot_1000.png}}
+							\subfigure[epoch=1500]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=4/predict_plot_1500.png}}
+							\subfigure[epoch=2000]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=4/predict_plot_2000.png}}
+							\subfigure[epoch=2500]{
+								\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.01rep=4/predict_plot_2500.png}}
+							\subfigure[Loss vs. epoch]{
+								\includegraphics[width=0.6\linewidth]{../width=50loss=mean_squared_errorini=0.01rep=4/learning_curve.png}}
+							\caption{Curve Fitting Process(experiment 4)}
+						\end{figure}
+						\newpage
+			
+						\subsubsection{Standard Error = 0.1}
+							\begin{figure}[h]
+								\centering  
+								\subfigure[epoch=0]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=1/predict_plot_0.png}}
+								\subfigure[epoch=500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=1/predict_plot_500.png}}
+								\subfigure[epoch=1000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=1/predict_plot_1000.png}}
+								\subfigure[epoch=1500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=1/predict_plot_1500.png}}
+								\subfigure[epoch=2000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=1/predict_plot_2000.png}}
+								\subfigure[epoch=2500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=1/predict_plot_2500.png}}
+								\subfigure[Loss vs. epoch]{
+									\includegraphics[width=0.6\linewidth]{../width=50loss=mean_squared_errorini=0.1rep=1/learning_curve.png}}
+								\caption{Curve Fitting Process(experiment 1)}
+							\end{figure}
+							\newpage
+			
+							\begin{figure}[h]
+								\centering  
+								\subfigure[epoch=0]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=2/predict_plot_0.png}}
+								\subfigure[epoch=500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=2/predict_plot_500.png}}
+								\subfigure[epoch=1000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=2/predict_plot_1000.png}}
+								\subfigure[epoch=1500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=2/predict_plot_1500.png}}
+								\subfigure[epoch=2000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=2/predict_plot_2000.png}}
+								\subfigure[epoch=2500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=2/predict_plot_2500.png}}
+								\subfigure[Loss vs. epoch]{
+									\includegraphics[width=0.6\linewidth]{../width=50loss=mean_squared_errorini=0.1rep=2/learning_curve.png}}
+								\caption{Curve Fitting Process(experiment 2)}
+							\end{figure}
+							\newpage
+			
+							\begin{figure}[h]
+								\centering  
+								\subfigure[epoch=0]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=3/predict_plot_0.png}}
+								\subfigure[epoch=500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=3/predict_plot_500.png}}
+								\subfigure[epoch=1000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=3/predict_plot_1000.png}}
+								\subfigure[epoch=1500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=3/predict_plot_1500.png}}
+								\subfigure[epoch=2000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=3/predict_plot_2000.png}}
+								\subfigure[epoch=2500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=3/predict_plot_2500.png}}
+								\subfigure[Loss vs. epoch]{
+									\includegraphics[width=0.6\linewidth]{../width=50loss=mean_squared_errorini=0.1rep=3/learning_curve.png}}
+								\caption{Curve Fitting Process(experiment 3)}
+							\end{figure}
+							\newpage
+			
+							\begin{figure}[h]
+								\centering  
+								\subfigure[epoch=0]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=4/predict_plot_0.png}}
+								\subfigure[epoch=500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=4/predict_plot_500.png}}
+								\subfigure[epoch=1000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=4/predict_plot_1000.png}}
+								\subfigure[epoch=1500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=4/predict_plot_1500.png}}
+								\subfigure[epoch=2000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=4/predict_plot_2000.png}}
+								\subfigure[epoch=2500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=0.1rep=4/predict_plot_2500.png}}
+								\subfigure[Loss vs. epoch]{
+									\includegraphics[width=0.6\linewidth]{../width=50loss=mean_squared_errorini=0.1rep=4/learning_curve.png}}
+								\caption{Curve Fitting Process(experiment 4)}
+							\end{figure}
+							\newpage
+			
+			
+						\subsubsection{Standard Error = 1}
+							\begin{figure}[h]
+								\centering  
+								\subfigure[epoch=0]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=1/predict_plot_0.png}}
+								\subfigure[epoch=500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=1/predict_plot_500.png}}
+								\subfigure[epoch=1000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=1/predict_plot_1000.png}}
+								\subfigure[epoch=1500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=1/predict_plot_1500.png}}
+								\subfigure[epoch=2000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=1/predict_plot_2000.png}}
+								\subfigure[epoch=2500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=1/predict_plot_2500.png}}
+								\subfigure[Loss vs. epoch]{
+									\includegraphics[width=0.6\linewidth]{../width=50loss=mean_squared_errorini=1rep=1/learning_curve.png}}
+								\caption{Curve Fitting Process(experiment 1)}
+							\end{figure}
+							\newpage
+			
+							\begin{figure}[h]
+								\centering  
+								\subfigure[epoch=0]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=2/predict_plot_0.png}}
+								\subfigure[epoch=500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=2/predict_plot_500.png}}
+								\subfigure[epoch=1000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=2/predict_plot_1000.png}}
+								\subfigure[epoch=1500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=2/predict_plot_1500.png}}
+								\subfigure[epoch=2000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=2/predict_plot_2000.png}}
+								\subfigure[epoch=2500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=2/predict_plot_2500.png}}
+								\subfigure[Loss vs. epoch]{
+									\includegraphics[width=0.6\linewidth]{../width=50loss=mean_squared_errorini=1rep=2/learning_curve.png}}
+								\caption{Curve Fitting Process(experiment 2)}
+							\end{figure}
+							\newpage
+			
+							\begin{figure}[h]
+								\centering  
+								\subfigure[epoch=0]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=3/predict_plot_0.png}}
+								\subfigure[epoch=500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=3/predict_plot_500.png}}
+								\subfigure[epoch=1000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=3/predict_plot_1000.png}}
+								\subfigure[epoch=1500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=3/predict_plot_1500.png}}
+								\subfigure[epoch=2000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=3/predict_plot_2000.png}}
+								\subfigure[epoch=2500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=3/predict_plot_2500.png}}
+								\subfigure[Loss vs. epoch]{
+									\includegraphics[width=0.6\linewidth]{../width=50loss=mean_squared_errorini=1rep=3/learning_curve.png}}
+								\caption{Curve Fitting Process(experiment 3)}
+							\end{figure}
+							\newpage
+			
+							\begin{figure}[h]
+								\centering  
+								\subfigure[epoch=0]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=4/predict_plot_0.png}}
+								\subfigure[epoch=500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=4/predict_plot_500.png}}
+								\subfigure[epoch=1000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=4/predict_plot_1000.png}}
+								\subfigure[epoch=1500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=4/predict_plot_1500.png}}
+								\subfigure[epoch=2000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=4/predict_plot_2000.png}}
+								\subfigure[epoch=2500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_squared_errorini=1rep=4/predict_plot_2500.png}}
+								\subfigure[Loss vs. epoch]{
+									\includegraphics[width=0.6\linewidth]{../width=50loss=mean_squared_errorini=1rep=4/learning_curve.png}}
+								\caption{Curve Fitting Process(experiment 4)}
+							\end{figure}
+							\newpage
+			
+			
+			
+						\subsection{Mean Absolute Error}
+							\subsubsection{Standard Error = 0.01}
+						
+							\begin{figure}[h]
+								\centering  
+								\subfigure[epoch=0]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=1/predict_plot_0.png}}
+								\subfigure[epoch=500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=1/predict_plot_500.png}}
+								\subfigure[epoch=1000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=1/predict_plot_1000.png}}
+								\subfigure[epoch=1500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=1/predict_plot_1500.png}}
+								\subfigure[epoch=2000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=1/predict_plot_2000.png}}
+								\subfigure[epoch=2500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=1/predict_plot_2500.png}}
+								\subfigure[Loss vs. epoch]{
+									\includegraphics[width=0.6\linewidth]{../width=50loss=mean_absolute_errorini=0.01rep=1/learning_curve.png}}
+								\caption{Curve Fitting Process(experiment 1)}
+							\end{figure}
+							\newpage
+				
+							\begin{figure}[h]
+								\centering  
+								\subfigure[epoch=0]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=2/predict_plot_0.png}}
+								\subfigure[epoch=500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=2/predict_plot_500.png}}
+								\subfigure[epoch=1000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=2/predict_plot_1000.png}}
+								\subfigure[epoch=1500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=2/predict_plot_1500.png}}
+								\subfigure[epoch=2000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=2/predict_plot_2000.png}}
+								\subfigure[epoch=2500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=2/predict_plot_2500.png}}
+								\subfigure[Loss vs. epoch]{
+									\includegraphics[width=0.6\linewidth]{../width=50loss=mean_absolute_errorini=0.01rep=2/learning_curve.png}}
+								\caption{Curve Fitting Process(experiment 2)}
+							\end{figure}
+							\newpage
+				
+							\begin{figure}[h]
+								\centering  
+								\subfigure[epoch=0]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=3/predict_plot_0.png}}
+								\subfigure[epoch=500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=3/predict_plot_500.png}}
+								\subfigure[epoch=1000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=3/predict_plot_1000.png}}
+								\subfigure[epoch=1500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=3/predict_plot_1500.png}}
+								\subfigure[epoch=2000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=3/predict_plot_2000.png}}
+								\subfigure[epoch=2500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=3/predict_plot_2500.png}}
+								\subfigure[Loss vs. epoch]{
+									\includegraphics[width=0.6\linewidth]{../width=50loss=mean_absolute_errorini=0.01rep=3/learning_curve.png}}
+								\caption{Curve Fitting Process(experiment 3)}
+							\end{figure}
+							\newpage
+				
+							\begin{figure}[h]
+								\centering  
+								\subfigure[epoch=0]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=4/predict_plot_0.png}}
+								\subfigure[epoch=500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=4/predict_plot_500.png}}
+								\subfigure[epoch=1000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=4/predict_plot_1000.png}}
+								\subfigure[epoch=1500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=4/predict_plot_1500.png}}
+								\subfigure[epoch=2000]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=4/predict_plot_2000.png}}
+								\subfigure[epoch=2500]{
+									\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.01rep=4/predict_plot_2500.png}}
+								\subfigure[Loss vs. epoch]{
+									\includegraphics[width=0.6\linewidth]{../width=50loss=mean_absolute_errorini=0.01rep=4/learning_curve.png}}
+								\caption{Curve Fitting Process(experiment 4)}
+							\end{figure}
+							\newpage
+				
+							\subsubsection{Standard Error = 0.1}
+								\begin{figure}[h]
+									\centering  
+									\subfigure[epoch=0]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=1/predict_plot_0.png}}
+									\subfigure[epoch=500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=1/predict_plot_500.png}}
+									\subfigure[epoch=1000]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=1/predict_plot_1000.png}}
+									\subfigure[epoch=1500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=1/predict_plot_1500.png}}
+									\subfigure[epoch=2000]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=1/predict_plot_2000.png}}
+									\subfigure[epoch=2500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=1/predict_plot_2500.png}}
+									\subfigure[Loss vs. epoch]{
+										\includegraphics[width=0.6\linewidth]{../width=50loss=mean_absolute_errorini=0.1rep=1/learning_curve.png}}
+									\caption{Curve Fitting Process(experiment 1)}
+								\end{figure}
+								\newpage
+				
+								\begin{figure}[h]
+									\centering  
+									\subfigure[epoch=0]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=2/predict_plot_0.png}}
+									\subfigure[epoch=500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=2/predict_plot_500.png}}
+									\subfigure[epoch=1000]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=2/predict_plot_1000.png}}
+									\subfigure[epoch=1500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=2/predict_plot_1500.png}}
+									\subfigure[epoch=2000]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=2/predict_plot_2000.png}}
+									\subfigure[epoch=2500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=2/predict_plot_2500.png}}
+									\subfigure[Loss vs. epoch]{
+										\includegraphics[width=0.6\linewidth]{../width=50loss=mean_absolute_errorini=0.1rep=2/learning_curve.png}}
+									\caption{Curve Fitting Process(experiment 2)}
+								\end{figure}
+								\newpage
+				
+								\begin{figure}[h]
+									\centering  
+									\subfigure[epoch=0]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=3/predict_plot_0.png}}
+									\subfigure[epoch=500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=3/predict_plot_500.png}}
+									\subfigure[epoch=1000]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=3/predict_plot_1000.png}}
+									\subfigure[epoch=1500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=3/predict_plot_1500.png}}
+									\subfigure[epoch=2000]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=3/predict_plot_2000.png}}
+									\subfigure[epoch=2500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=3/predict_plot_2500.png}}
+									\subfigure[Loss vs. epoch]{
+										\includegraphics[width=0.6\linewidth]{../width=50loss=mean_absolute_errorini=0.1rep=3/learning_curve.png}}
+									\caption{Curve Fitting Process(experiment 3)}
+								\end{figure}
+								\newpage
+				
+								\begin{figure}[h]
+									\centering  
+									\subfigure[epoch=0]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=4/predict_plot_0.png}}
+									\subfigure[epoch=500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=4/predict_plot_500.png}}
+									\subfigure[epoch=1000]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=4/predict_plot_1000.png}}
+									\subfigure[epoch=1500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=4/predict_plot_1500.png}}
+									\subfigure[epoch=2000]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=4/predict_plot_2000.png}}
+									\subfigure[epoch=2500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=0.1rep=4/predict_plot_2500.png}}
+									\subfigure[Loss vs. epoch]{
+										\includegraphics[width=0.6\linewidth]{../width=50loss=mean_absolute_errorini=0.1rep=4/learning_curve.png}}
+									\caption{Curve Fitting Process(experiment 4)}
+								\end{figure}
+								\newpage
+				
+				
+							\subsubsection{Standard Error = 1}
+								\begin{figure}[h]
+									\centering  
+									\subfigure[epoch=0]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=1/predict_plot_0.png}}
+									\subfigure[epoch=500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=1/predict_plot_500.png}}
+									\subfigure[epoch=1000]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=1/predict_plot_1000.png}}
+									\subfigure[epoch=1500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=1/predict_plot_1500.png}}
+									\subfigure[epoch=2000]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=1/predict_plot_2000.png}}
+									\subfigure[epoch=2500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=1/predict_plot_2500.png}}
+									\subfigure[Loss vs. epoch]{
+										\includegraphics[width=0.6\linewidth]{../width=50loss=mean_absolute_errorini=1rep=1/learning_curve.png}}
+									\caption{Curve Fitting Process(experiment 1)}
+								\end{figure}
+								\newpage
+				
+								\begin{figure}[h]
+									\centering  
+									\subfigure[epoch=0]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=2/predict_plot_0.png}}
+									\subfigure[epoch=500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=2/predict_plot_500.png}}
+									\subfigure[epoch=1000]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=2/predict_plot_1000.png}}
+									\subfigure[epoch=1500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=2/predict_plot_1500.png}}
+									\subfigure[epoch=2000]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=2/predict_plot_2000.png}}
+									\subfigure[epoch=2500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=2/predict_plot_2500.png}}
+									\subfigure[Loss vs. epoch]{
+										\includegraphics[width=0.6\linewidth]{../width=50loss=mean_absolute_errorini=1rep=2/learning_curve.png}}
+									\caption{Curve Fitting Process(experiment 2)}
+								\end{figure}
+								\newpage
+				
+								\begin{figure}[h]
+									\centering  
+									\subfigure[epoch=0]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=3/predict_plot_0.png}}
+									\subfigure[epoch=500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=3/predict_plot_500.png}}
+									\subfigure[epoch=1000]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=3/predict_plot_1000.png}}
+									\subfigure[epoch=1500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=3/predict_plot_1500.png}}
+									\subfigure[epoch=2000]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=3/predict_plot_2000.png}}
+									\subfigure[epoch=2500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=3/predict_plot_2500.png}}
+									\subfigure[Loss vs. epoch]{
+										\includegraphics[width=0.6\linewidth]{../width=50loss=mean_absolute_errorini=1rep=3/learning_curve.png}}
+									\caption{Curve Fitting Process(experiment 3)}
+								\end{figure}
+								\newpage
+				
+								\begin{figure}[h]
+									\centering  
+									\subfigure[epoch=0]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=4/predict_plot_0.png}}
+									\subfigure[epoch=500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=4/predict_plot_500.png}}
+									\subfigure[epoch=1000]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=4/predict_plot_1000.png}}
+									\subfigure[epoch=1500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=4/predict_plot_1500.png}}
+									\subfigure[epoch=2000]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=4/predict_plot_2000.png}}
+									\subfigure[epoch=2500]{
+										\includegraphics[width=0.3\textwidth]{../width=50loss=mean_absolute_errorini=1rep=4/predict_plot_2500.png}}
+									\subfigure[Loss vs. epoch]{
+										\includegraphics[width=0.6\linewidth]{../width=50loss=mean_absolute_errorini=1rep=4/learning_curve.png}}
+									\caption{Curve Fitting Process(experiment 4)}
+								\end{figure}
+								\newpage
+	
+
+								\section{Width = 100}
+								\subsection{Mean Square Error}
+									\subsubsection{Standard Error = 0.01}
+								
+									\begin{figure}[h]
+										\centering  
+										\subfigure[epoch=0]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=1/predict_plot_0.png}}
+										\subfigure[epoch=500]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=1/predict_plot_500.png}}
+										\subfigure[epoch=1000]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=1/predict_plot_1000.png}}
+										\subfigure[epoch=1500]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=1/predict_plot_1500.png}}
+										\subfigure[epoch=2000]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=1/predict_plot_2000.png}}
+										\subfigure[epoch=2500]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=1/predict_plot_2500.png}}
+										\subfigure[Loss vs. epoch]{
+											\includegraphics[width=0.6\linewidth]{../width=100loss=mean_squared_errorini=0.01rep=1/learning_curve.png}}
+										\caption{Curve Fitting Process(experiment 1)}
+									\end{figure}
+									\newpage
+						
+									\begin{figure}[h]
+										\centering  
+										\subfigure[epoch=0]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=2/predict_plot_0.png}}
+										\subfigure[epoch=500]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=2/predict_plot_500.png}}
+										\subfigure[epoch=1000]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=2/predict_plot_1000.png}}
+										\subfigure[epoch=1500]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=2/predict_plot_1500.png}}
+										\subfigure[epoch=2000]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=2/predict_plot_2000.png}}
+										\subfigure[epoch=2500]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=2/predict_plot_2500.png}}
+										\subfigure[Loss vs. epoch]{
+											\includegraphics[width=0.6\linewidth]{../width=100loss=mean_squared_errorini=0.01rep=2/learning_curve.png}}
+										\caption{Curve Fitting Process(experiment 2)}
+									\end{figure}
+									\newpage
+						
+									\begin{figure}[h]
+										\centering  
+										\subfigure[epoch=0]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=3/predict_plot_0.png}}
+										\subfigure[epoch=500]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=3/predict_plot_500.png}}
+										\subfigure[epoch=1000]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=3/predict_plot_1000.png}}
+										\subfigure[epoch=1500]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=3/predict_plot_1500.png}}
+										\subfigure[epoch=2000]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=3/predict_plot_2000.png}}
+										\subfigure[epoch=2500]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=3/predict_plot_2500.png}}
+										\subfigure[Loss vs. epoch]{
+											\includegraphics[width=0.6\linewidth]{../width=100loss=mean_squared_errorini=0.01rep=3/learning_curve.png}}
+										\caption{Curve Fitting Process(experiment 3)}
+									\end{figure}
+									\newpage
+						
+									\begin{figure}[h]
+										\centering  
+										\subfigure[epoch=0]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=4/predict_plot_0.png}}
+										\subfigure[epoch=500]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=4/predict_plot_500.png}}
+										\subfigure[epoch=1000]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=4/predict_plot_1000.png}}
+										\subfigure[epoch=1500]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=4/predict_plot_1500.png}}
+										\subfigure[epoch=2000]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=4/predict_plot_2000.png}}
+										\subfigure[epoch=2500]{
+											\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.01rep=4/predict_plot_2500.png}}
+										\subfigure[Loss vs. epoch]{
+											\includegraphics[width=0.6\linewidth]{../width=100loss=mean_squared_errorini=0.01rep=4/learning_curve.png}}
+										\caption{Curve Fitting Process(experiment 4)}
+									\end{figure}
+									\newpage
+						
+									\subsubsection{Standard Error = 0.1}
+										\begin{figure}[h]
+											\centering  
+											\subfigure[epoch=0]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=1/predict_plot_0.png}}
+											\subfigure[epoch=500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=1/predict_plot_500.png}}
+											\subfigure[epoch=1000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=1/predict_plot_1000.png}}
+											\subfigure[epoch=1500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=1/predict_plot_1500.png}}
+											\subfigure[epoch=2000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=1/predict_plot_2000.png}}
+											\subfigure[epoch=2500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=1/predict_plot_2500.png}}
+											\subfigure[Loss vs. epoch]{
+												\includegraphics[width=0.6\linewidth]{../width=100loss=mean_squared_errorini=0.1rep=1/learning_curve.png}}
+											\caption{Curve Fitting Process(experiment 1)}
+										\end{figure}
+										\newpage
+						
+										\begin{figure}[h]
+											\centering  
+											\subfigure[epoch=0]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=2/predict_plot_0.png}}
+											\subfigure[epoch=500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=2/predict_plot_500.png}}
+											\subfigure[epoch=1000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=2/predict_plot_1000.png}}
+											\subfigure[epoch=1500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=2/predict_plot_1500.png}}
+											\subfigure[epoch=2000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=2/predict_plot_2000.png}}
+											\subfigure[epoch=2500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=2/predict_plot_2500.png}}
+											\subfigure[Loss vs. epoch]{
+												\includegraphics[width=0.6\linewidth]{../width=100loss=mean_squared_errorini=0.1rep=2/learning_curve.png}}
+											\caption{Curve Fitting Process(experiment 2)}
+										\end{figure}
+										\newpage
+						
+										\begin{figure}[h]
+											\centering  
+											\subfigure[epoch=0]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=3/predict_plot_0.png}}
+											\subfigure[epoch=500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=3/predict_plot_500.png}}
+											\subfigure[epoch=1000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=3/predict_plot_1000.png}}
+											\subfigure[epoch=1500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=3/predict_plot_1500.png}}
+											\subfigure[epoch=2000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=3/predict_plot_2000.png}}
+											\subfigure[epoch=2500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=3/predict_plot_2500.png}}
+											\subfigure[Loss vs. epoch]{
+												\includegraphics[width=0.6\linewidth]{../width=100loss=mean_squared_errorini=0.1rep=3/learning_curve.png}}
+											\caption{Curve Fitting Process(experiment 3)}
+										\end{figure}
+										\newpage
+						
+										\begin{figure}[h]
+											\centering  
+											\subfigure[epoch=0]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=4/predict_plot_0.png}}
+											\subfigure[epoch=500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=4/predict_plot_500.png}}
+											\subfigure[epoch=1000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=4/predict_plot_1000.png}}
+											\subfigure[epoch=1500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=4/predict_plot_1500.png}}
+											\subfigure[epoch=2000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=4/predict_plot_2000.png}}
+											\subfigure[epoch=2500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=0.1rep=4/predict_plot_2500.png}}
+											\subfigure[Loss vs. epoch]{
+												\includegraphics[width=0.6\linewidth]{../width=100loss=mean_squared_errorini=0.1rep=4/learning_curve.png}}
+											\caption{Curve Fitting Process(experiment 4)}
+										\end{figure}
+										\newpage
+						
+						
+									\subsubsection{Standard Error = 1}
+										\begin{figure}[h]
+											\centering  
+											\subfigure[epoch=0]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=1/predict_plot_0.png}}
+											\subfigure[epoch=500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=1/predict_plot_500.png}}
+											\subfigure[epoch=1000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=1/predict_plot_1000.png}}
+											\subfigure[epoch=1500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=1/predict_plot_1500.png}}
+											\subfigure[epoch=2000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=1/predict_plot_2000.png}}
+											\subfigure[epoch=2500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=1/predict_plot_2500.png}}
+											\subfigure[Loss vs. epoch]{
+												\includegraphics[width=0.6\linewidth]{../width=100loss=mean_squared_errorini=1rep=1/learning_curve.png}}
+											\caption{Curve Fitting Process(experiment 1)}
+										\end{figure}
+										\newpage
+						
+										\begin{figure}[h]
+											\centering  
+											\subfigure[epoch=0]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=2/predict_plot_0.png}}
+											\subfigure[epoch=500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=2/predict_plot_500.png}}
+											\subfigure[epoch=1000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=2/predict_plot_1000.png}}
+											\subfigure[epoch=1500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=2/predict_plot_1500.png}}
+											\subfigure[epoch=2000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=2/predict_plot_2000.png}}
+											\subfigure[epoch=2500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=2/predict_plot_2500.png}}
+											\subfigure[Loss vs. epoch]{
+												\includegraphics[width=0.6\linewidth]{../width=100loss=mean_squared_errorini=1rep=2/learning_curve.png}}
+											\caption{Curve Fitting Process(experiment 2)}
+										\end{figure}
+										\newpage
+						
+										\begin{figure}[h]
+											\centering  
+											\subfigure[epoch=0]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=3/predict_plot_0.png}}
+											\subfigure[epoch=500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=3/predict_plot_500.png}}
+											\subfigure[epoch=1000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=3/predict_plot_1000.png}}
+											\subfigure[epoch=1500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=3/predict_plot_1500.png}}
+											\subfigure[epoch=2000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=3/predict_plot_2000.png}}
+											\subfigure[epoch=2500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=3/predict_plot_2500.png}}
+											\subfigure[Loss vs. epoch]{
+												\includegraphics[width=0.6\linewidth]{../width=100loss=mean_squared_errorini=1rep=3/learning_curve.png}}
+											\caption{Curve Fitting Process(experiment 3)}
+										\end{figure}
+										\newpage
+						
+										\begin{figure}[h]
+											\centering  
+											\subfigure[epoch=0]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=4/predict_plot_0.png}}
+											\subfigure[epoch=500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=4/predict_plot_500.png}}
+											\subfigure[epoch=1000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=4/predict_plot_1000.png}}
+											\subfigure[epoch=1500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=4/predict_plot_1500.png}}
+											\subfigure[epoch=2000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=4/predict_plot_2000.png}}
+											\subfigure[epoch=2500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_squared_errorini=1rep=4/predict_plot_2500.png}}
+											\subfigure[Loss vs. epoch]{
+												\includegraphics[width=0.6\linewidth]{../width=100loss=mean_squared_errorini=1rep=4/learning_curve.png}}
+											\caption{Curve Fitting Process(experiment 4)}
+										\end{figure}
+										\newpage
+						
+						
+						
+									\subsection{Mean Absolute Error}
+										\subsubsection{Standard Error = 0.01}
+									
+										\begin{figure}[h]
+											\centering  
+											\subfigure[epoch=0]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=1/predict_plot_0.png}}
+											\subfigure[epoch=500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=1/predict_plot_500.png}}
+											\subfigure[epoch=1000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=1/predict_plot_1000.png}}
+											\subfigure[epoch=1500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=1/predict_plot_1500.png}}
+											\subfigure[epoch=2000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=1/predict_plot_2000.png}}
+											\subfigure[epoch=2500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=1/predict_plot_2500.png}}
+											\subfigure[Loss vs. epoch]{
+												\includegraphics[width=0.6\linewidth]{../width=100loss=mean_absolute_errorini=0.01rep=1/learning_curve.png}}
+											\caption{Curve Fitting Process(experiment 1)}
+										\end{figure}
+										\newpage
+							
+										\begin{figure}[h]
+											\centering  
+											\subfigure[epoch=0]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=2/predict_plot_0.png}}
+											\subfigure[epoch=500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=2/predict_plot_500.png}}
+											\subfigure[epoch=1000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=2/predict_plot_1000.png}}
+											\subfigure[epoch=1500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=2/predict_plot_1500.png}}
+											\subfigure[epoch=2000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=2/predict_plot_2000.png}}
+											\subfigure[epoch=2500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=2/predict_plot_2500.png}}
+											\subfigure[Loss vs. epoch]{
+												\includegraphics[width=0.6\linewidth]{../width=100loss=mean_absolute_errorini=0.01rep=2/learning_curve.png}}
+											\caption{Curve Fitting Process(experiment 2)}
+										\end{figure}
+										\newpage
+							
+										\begin{figure}[h]
+											\centering  
+											\subfigure[epoch=0]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=3/predict_plot_0.png}}
+											\subfigure[epoch=500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=3/predict_plot_500.png}}
+											\subfigure[epoch=1000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=3/predict_plot_1000.png}}
+											\subfigure[epoch=1500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=3/predict_plot_1500.png}}
+											\subfigure[epoch=2000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=3/predict_plot_2000.png}}
+											\subfigure[epoch=2500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=3/predict_plot_2500.png}}
+											\subfigure[Loss vs. epoch]{
+												\includegraphics[width=0.6\linewidth]{../width=100loss=mean_absolute_errorini=0.01rep=3/learning_curve.png}}
+											\caption{Curve Fitting Process(experiment 3)}
+										\end{figure}
+										\newpage
+							
+										\begin{figure}[h]
+											\centering  
+											\subfigure[epoch=0]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=4/predict_plot_0.png}}
+											\subfigure[epoch=500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=4/predict_plot_500.png}}
+											\subfigure[epoch=1000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=4/predict_plot_1000.png}}
+											\subfigure[epoch=1500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=4/predict_plot_1500.png}}
+											\subfigure[epoch=2000]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=4/predict_plot_2000.png}}
+											\subfigure[epoch=2500]{
+												\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.01rep=4/predict_plot_2500.png}}
+											\subfigure[Loss vs. epoch]{
+												\includegraphics[width=0.6\linewidth]{../width=100loss=mean_absolute_errorini=0.01rep=4/learning_curve.png}}
+											\caption{Curve Fitting Process(experiment 4)}
+										\end{figure}
+										\newpage
+							
+										\subsubsection{Standard Error = 0.1}
+											\begin{figure}[h]
+												\centering  
+												\subfigure[epoch=0]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=1/predict_plot_0.png}}
+												\subfigure[epoch=500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=1/predict_plot_500.png}}
+												\subfigure[epoch=1000]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=1/predict_plot_1000.png}}
+												\subfigure[epoch=1500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=1/predict_plot_1500.png}}
+												\subfigure[epoch=2000]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=1/predict_plot_2000.png}}
+												\subfigure[epoch=2500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=1/predict_plot_2500.png}}
+												\subfigure[Loss vs. epoch]{
+													\includegraphics[width=0.6\linewidth]{../width=100loss=mean_absolute_errorini=0.1rep=1/learning_curve.png}}
+												\caption{Curve Fitting Process(experiment 1)}
+											\end{figure}
+											\newpage
+							
+											\begin{figure}[h]
+												\centering  
+												\subfigure[epoch=0]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=2/predict_plot_0.png}}
+												\subfigure[epoch=500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=2/predict_plot_500.png}}
+												\subfigure[epoch=1000]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=2/predict_plot_1000.png}}
+												\subfigure[epoch=1500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=2/predict_plot_1500.png}}
+												\subfigure[epoch=2000]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=2/predict_plot_2000.png}}
+												\subfigure[epoch=2500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=2/predict_plot_2500.png}}
+												\subfigure[Loss vs. epoch]{
+													\includegraphics[width=0.6\linewidth]{../width=100loss=mean_absolute_errorini=0.1rep=2/learning_curve.png}}
+												\caption{Curve Fitting Process(experiment 2)}
+											\end{figure}
+											\newpage
+							
+											\begin{figure}[h]
+												\centering  
+												\subfigure[epoch=0]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=3/predict_plot_0.png}}
+												\subfigure[epoch=500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=3/predict_plot_500.png}}
+												\subfigure[epoch=1000]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=3/predict_plot_1000.png}}
+												\subfigure[epoch=1500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=3/predict_plot_1500.png}}
+												\subfigure[epoch=2000]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=3/predict_plot_2000.png}}
+												\subfigure[epoch=2500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=3/predict_plot_2500.png}}
+												\subfigure[Loss vs. epoch]{
+													\includegraphics[width=0.6\linewidth]{../width=100loss=mean_absolute_errorini=0.1rep=3/learning_curve.png}}
+												\caption{Curve Fitting Process(experiment 3)}
+											\end{figure}
+											\newpage
+							
+											\begin{figure}[h]
+												\centering  
+												\subfigure[epoch=0]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=4/predict_plot_0.png}}
+												\subfigure[epoch=500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=4/predict_plot_500.png}}
+												\subfigure[epoch=1000]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=4/predict_plot_1000.png}}
+												\subfigure[epoch=1500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=4/predict_plot_1500.png}}
+												\subfigure[epoch=2000]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=4/predict_plot_2000.png}}
+												\subfigure[epoch=2500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=0.1rep=4/predict_plot_2500.png}}
+												\subfigure[Loss vs. epoch]{
+													\includegraphics[width=0.6\linewidth]{../width=100loss=mean_absolute_errorini=0.1rep=4/learning_curve.png}}
+												\caption{Curve Fitting Process(experiment 4)}
+											\end{figure}
+											\newpage
+							
+							
+										\subsubsection{Standard Error = 1}
+											\begin{figure}[h]
+												\centering  
+												\subfigure[epoch=0]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=1/predict_plot_0.png}}
+												\subfigure[epoch=500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=1/predict_plot_500.png}}
+												\subfigure[epoch=1000]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=1/predict_plot_1000.png}}
+												\subfigure[epoch=1500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=1/predict_plot_1500.png}}
+												\subfigure[epoch=2000]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=1/predict_plot_2000.png}}
+												\subfigure[epoch=2500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=1/predict_plot_2500.png}}
+												\subfigure[Loss vs. epoch]{
+													\includegraphics[width=0.6\linewidth]{../width=100loss=mean_absolute_errorini=1rep=1/learning_curve.png}}
+												\caption{Curve Fitting Process(experiment 1)}
+											\end{figure}
+											\newpage
+							
+											\begin{figure}[h]
+												\centering  
+												\subfigure[epoch=0]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=2/predict_plot_0.png}}
+												\subfigure[epoch=500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=2/predict_plot_500.png}}
+												\subfigure[epoch=1000]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=2/predict_plot_1000.png}}
+												\subfigure[epoch=1500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=2/predict_plot_1500.png}}
+												\subfigure[epoch=2000]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=2/predict_plot_2000.png}}
+												\subfigure[epoch=2500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=2/predict_plot_2500.png}}
+												\subfigure[Loss vs. epoch]{
+													\includegraphics[width=0.6\linewidth]{../width=100loss=mean_absolute_errorini=1rep=2/learning_curve.png}}
+												\caption{Curve Fitting Process(experiment 2)}
+											\end{figure}
+											\newpage
+							
+											\begin{figure}[h]
+												\centering  
+												\subfigure[epoch=0]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=3/predict_plot_0.png}}
+												\subfigure[epoch=500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=3/predict_plot_500.png}}
+												\subfigure[epoch=1000]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=3/predict_plot_1000.png}}
+												\subfigure[epoch=1500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=3/predict_plot_1500.png}}
+												\subfigure[epoch=2000]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=3/predict_plot_2000.png}}
+												\subfigure[epoch=2500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=3/predict_plot_2500.png}}
+												\subfigure[Loss vs. epoch]{
+													\includegraphics[width=0.6\linewidth]{../width=100loss=mean_absolute_errorini=1rep=3/learning_curve.png}}
+												\caption{Curve Fitting Process(experiment 3)}
+											\end{figure}
+											\newpage
+							
+											\begin{figure}[h]
+												\centering  
+												\subfigure[epoch=0]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=4/predict_plot_0.png}}
+												\subfigure[epoch=500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=4/predict_plot_500.png}}
+												\subfigure[epoch=1000]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=4/predict_plot_1000.png}}
+												\subfigure[epoch=1500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=4/predict_plot_1500.png}}
+												\subfigure[epoch=2000]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=4/predict_plot_2000.png}}
+												\subfigure[epoch=2500]{
+													\includegraphics[width=0.3\textwidth]{../width=100loss=mean_absolute_errorini=1rep=4/predict_plot_2500.png}}
+												\subfigure[Loss vs. epoch]{
+													\includegraphics[width=0.6\linewidth]{../width=100loss=mean_absolute_errorini=1rep=4/learning_curve.png}}
+												\caption{Curve Fitting Process(experiment 4)}
+											\end{figure}
+											\newpage
 
 
 	
-	\printbibliography
+	% \printbibliography
 	
 	\newpage
 

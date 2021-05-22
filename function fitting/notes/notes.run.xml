@@ -84,7 +84,6 @@
       <file>notes-blx.bib</file>
     </requires>
     <requires type="editable">
-      <file>ref.bib</file>
     </requires>
     <requires type="static">
       <file>biblatex.bst</file>
