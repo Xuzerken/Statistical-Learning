@@ -61,7 +61,7 @@ for v_width in [10,50,100]:
 
 
                 model = keras.models.Sequential([
-                    keras.layers.Dense(v_width, activation="relu", input_shape=X_train.shape[1:],kernel_initializer=keras.initializers.random_normal(stddev=v_ini)),
+                    keras.layers.Dense(v_width, activation="relu", input_shape=X_train.shape[1:],kernel_initializer=keras.initializers.RandomNormal(stddev=v_ini)),
                     keras.layers.Dense(1)
                 ])
                 model.compile(loss=v_loss, optimizer=keras.optimizers.Adam(lr=1e-3))
